@@ -2,7 +2,6 @@ import abc
 import os
 from pathlib import Path
 
-import openai
 import yaml
 from module.log import logger
 
