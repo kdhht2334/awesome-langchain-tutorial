@@ -4,7 +4,7 @@ from pathlib import Path
 
 import openai
 import yaml
-from log import logger
+from module.log import logger
 
 PROJECT_ROOT = Path.cwd()
 
@@ -43,17 +43,9 @@ class Config(metaclass=Singleton):
         self._configs = {}
         self._init_with_config_files_and_env(self._configs, yaml_file)
         logger.info("Config loading done.")
-        # self.global_proxy = self._get("global_proxy")
         self.openai_api_key = self._get("openai_api_key")
         if not self.openai_api_key or "your_api_key" == self.openai_api_key:
             raise NotConfiguredException("Set openai_api_key first")
-        self.openai_api_base = self._get("openai_api_base")
-        if not self.openai_api_base or "your_api_base" == self.openai_api_base:
-            openai_proxy = self._get("openai_proxy") or self.global_proxy
-            if openai_proxy:
-                openai.proxy = openai_proxy
-            else:
-                logger.info("Set OPENAI_API_BASE in case of network issues")
         self.openai_api_rpm = self._get("rpm", 3)
         self.openai_api_model = self._get("openai_api_model", "gpt-4")
         self.max_tokens_rsp = self._get("max_tokens", 2048)

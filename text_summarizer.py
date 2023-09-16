@@ -1,5 +1,3 @@
-import os
-
 import streamlit as st
 from langchain.chains.summarize import load_summarize_chain
 from langchain.docstore.document import Document
@@ -9,7 +7,9 @@ from langchain.text_splitter import CharacterTextSplitter
 st.title("Langchain Text Summarizer")
 
 
-from config import CONFIG
+from module import config
+
+CONFIG = config.CONFIG
 
 openai_api_key = CONFIG.get("openai_api_key")
 
