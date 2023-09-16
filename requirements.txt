@@ -2,3 +2,5 @@ langchain[llms]==0.0.262
 tiktoken
 streamlit==1.25.0
 pydantic=1.10.9
+pypdf==3.16.0
+llama-cpp-python==0.2.6
